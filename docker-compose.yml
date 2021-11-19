@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  blackbox-exporter:
+    image: prom/blackbox-exporter:latest
+    container_name: blackbox-exporter
+    ports:
+      - 9115:9115
+    volumes:
+      - ./blackbox:/etc/blackbox_exporter
+      - ./ssl:/etc/ssl/certs 
+    command: --config.file=/etc/blackbox_exporter/blackbox.yml
+    restart: unless-stopped
